@@ -448,3 +448,77 @@ The `paginate` method returns a Promise, which fulfills with an object having th
   "totalResults": 48
 }
 ```
+
+
+
+**Deploying Dockerized users list app to AWS: Step-by-Step Guide**
+
+**AWS Service Choices and Justifications:**
+
+1. **EC2 (Elastic Compute Cloud):**
+   - *Justification:* EC2 instances will host our Dockerized NodeJS application, providing scalable compute capacity.
+
+2. **ECS (Elastic Container Service):**
+   - *Justification:* ECS will be used to orchestrate and manage Docker containers for the NodeJS application.
+
+3. **Elasticache (Redis):**
+   - *Justification:* Elasticache will be used for caching user data, improving application performance.
+
+4. **MongoDB Atlas:**
+   - *Justification:* MongoDB Atlas offers a managed MongoDB database service, ensuring scalability, security, and reliability.
+
+5. **AWS CloudWatch:**
+   - *Justification:* CloudWatch will be used for monitoring and logging application health, providing insights into performance.
+
+**Setting Up Environment:**
+
+1. **EC2 Instance Setup:**
+   - Launch an EC2 instance using the desired AMI.
+   - Configure security groups to allow traffic on port 80 (Nginx) and 3000 (NodeJS application).
+
+2. **Docker and Docker Compose:**
+   - SSH into the EC2 instance.
+   - Install Docker and Docker Compose.
+   - Copy the Dockerized NodeJS application files (including Dockerfile and docker-compose.yml) to the instance.
+
+3. **Elasticache (Redis) Setup:**
+   - Create a Redis Elasticache cluster.
+   - Configure the NodeJS application to use the Redis endpoint for caching.
+
+4. **MongoDB Atlas Setup:**
+   - Create a MongoDB Atlas cluster.
+   - Whitelist the EC2 instance IP for database access.
+   - Configure the NodeJS application with the MongoDB Atlas connection string.
+
+5. **Environment Variables:**
+   - Use AWS Systems Manager Parameter Store or environment variables to securely store sensitive data like API keys.
+
+**Deploying Application:**
+
+1. **Build and Run Docker Containers:**
+   # run docker container in production mode
+	- yarn docker:prod
+
+2. **Security Considerations:**
+   - Ensure proper IAM roles for EC2 instances.
+   - Enable AWS Key Management Service (KMS) for data encryption.
+   - Set up HTTPS using AWS Certificate Manager (ACM).
+
+**Monitoring Application:**
+
+1. **CloudWatch Metrics:**
+   - Set up CloudWatch Alarms for key metrics (CPU usage, memory usage, etc.).
+   - Monitor application logs in CloudWatch Logs.
+
+2. **Elasticache Metrics:**
+   - Monitor Redis metrics in CloudWatch.
+
+3. **MongoDB Atlas Monitoring:**
+   - Leverage MongoDB Atlas monitoring features for database performance insights.
+
+4. **Application Tracing:**
+   - Enable AWS X-Ray for distributed tracing of requests.
+
+**Conclusion:**
+
+This guide provides a comprehensive deployment strategy for the Dockerized NodeJS application on AWS using ECS. Leveraging EC2 for hosting, ECS for container orchestration, Elasticache for caching, MongoDB Atlas for database management, and AWS CloudWatch for monitoring ensures a scalable, reliable, and well-monitored environment. The outlined steps prioritize security, performance, and operational excellence in the deployment process.
