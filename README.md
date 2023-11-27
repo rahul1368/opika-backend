@@ -451,7 +451,7 @@ The `paginate` method returns a Promise, which fulfills with an object having th
 
 
 
-**Deploying Dockerized users list app to AWS: Step-by-Step Guide**
+# Deploying Dockerized users list app to AWS: Step-by-Step Guide**
 
 **AWS Service Choices and Justifications:**
 
@@ -496,8 +496,10 @@ The `paginate` method returns a Promise, which fulfills with an object having th
 **Deploying Application:**
 
 1. **Build and Run Docker Containers:**
-   # run docker container in production mode
-	- yarn docker:prod
+  - run docker container in production mode
+	```bash
+  yarn docker: prod
+  ```
 
 2. **Security Considerations:**
    - Ensure proper IAM roles for EC2 instances.
