@@ -9,6 +9,16 @@ services:
       - "27018:27017"
     networks:
       - backend
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+          
   app:
     container_name: ts-node-app
     build: 
@@ -22,7 +32,7 @@ services:
     ports:
       - ${PORT}:${PORT}
     environment: 
-      - MONGODB_URL=mongodb://mongo:27017/node-boilerplate
+      - MONGODB_URL=mongodb://mongo:27017/users-list
       - CLIENT_URL=${CLIENT_URL}
     links: 
       - mongo  

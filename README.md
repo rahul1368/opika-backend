@@ -496,7 +496,7 @@ The `paginate` method returns a Promise, which fulfills with an object having th
 
 1. **Build and Run Docker Containers:**
    - Build Docker images: `docker-compose build`.
-   - Run Docker containers: `yarn docker: prod`.
+   - Run Docker containers: `yarn docker:prod`.
 
 2. **Security Considerations:**
    - Ensure proper IAM roles for EC2 instances.

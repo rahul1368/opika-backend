@@ -2,7 +2,12 @@
 
 import Redis from 'ioredis';
 
-const redisClient = new Redis();
+const redisOptions = {
+    host: 'redis',
+    port:  6379,
+    // Add other configuration options as needed
+  };
+const redisClient = new Redis(redisOptions);
 
 // Check if connected to Redis
 redisClient.on('connect', () => {
